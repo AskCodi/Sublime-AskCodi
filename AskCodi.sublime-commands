@@ -1,0 +1,18 @@
+[
+    {
+        "caption": "AskCodi: Generate Code",
+        "command": "generate_code"
+    },
+    {
+        "caption": "AskCodi: Explain Code",
+        "command": "explain_code"
+    },
+    {
+        "caption": "AskCodi: Document Code",
+        "command": "document_code"
+    },
+    {
+        "caption": "AskCodi: Test Code",
+        "command": "test_code"
+    }
+]

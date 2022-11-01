@@ -1,0 +1,25 @@
+[
+    {
+        "caption": "Ask Codi",
+        "children":
+        [
+            { 
+                "caption": "Generate Code",
+                "command": "generate_code"
+            },
+            { 
+                "caption": "Explain Code",
+                "command": "explain_code"
+            },
+            { 
+                "caption": "Document Code",
+                "command": "document_code"
+            },
+            { 
+                "caption": "Test Code",
+                "command": "test_code"
+            }
+        ]
+    }
+
+]

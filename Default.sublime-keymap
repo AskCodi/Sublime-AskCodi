@@ -1,0 +1,22 @@
+[
+    {
+        "keys": ["ctrl+2"],
+        "command": "generate_code"
+    },
+    {
+        "keys": ["ctrl+4"],
+        "command": "explain_code"
+    },
+    {
+        "keys": ["ctrl+3"],
+        "command": "document_code"
+    },
+    {
+        "keys": ["ctrl+5"],
+        "command": "test_code"
+    },
+    {
+        "keys": ["ctrl+1"],
+        "command": "complete_code"
+    }
+]
