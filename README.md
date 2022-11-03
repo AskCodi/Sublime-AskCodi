@@ -42,6 +42,17 @@ With the support of teams, you can accelerate the process by sharing suggestions
 **4. Explain Code:** Select the code, right click and go to Ask Codi. Click on Explain Code and a bottom dialogue box opens. Keep the default text as it is to get the time complexity of the selected code. Delete and either provide a different information if you want(like a library)or leave it empty, and hit enter to get code explanation. Wait for bottom panel to open and display the results.
 
 
+## Change Key-bindings
+
+**Mac:** Goto Settings => Preferences => Package Settings => AskCodi => Key-bindings 
+
+**Windows:** Goto Preferences => Key Bindings 
+
+**Ubuntu:** Goto Preferences => Key Bindings 
+
+Make the desired changes and save the file.
+
+
 ## Links
 
 Join our  [discord](https://discord.gg/sXU4F6XfAx) community to stay updated on the changes and talk to the community.
