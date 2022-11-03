@@ -1,0 +1,33 @@
+[
+    {
+        "caption": "Preferences",
+        "mnemonic": "n",
+        "id": "preferences",
+        "children":
+        [
+            {
+                "caption": "Package Settings",
+                "mnemonic": "P",
+                "id": "package-settings",
+                "children":
+                [
+                    {
+                        "caption": "AskCodi",
+                        "mnemonic": "W",
+                        "id": "AskCodi-settings",
+                        "children":
+                        [
+                            {
+                                "command": "open_file", "args":
+                                {
+                                    "file": "${packages}/User/Default.sublime-keymap"
+                                },
+                                "caption": "Key-bindings"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
