@@ -1,0 +1,10 @@
+.DS_Store
+*.pyc
+.idea
+*.log
+*.mypy_cache
+*.sublime-workspace
+*.sublime-settings
+*.sublime-project
+*.xml
+*.iml
