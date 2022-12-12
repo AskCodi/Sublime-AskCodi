@@ -42,6 +42,15 @@ With the support of teams, you can accelerate the process by sharing suggestions
 **4. Explain Code:** Select the code, right click and go to Ask Codi. Click on Explain Code and a bottom dialogue box opens. Keep the default text as it is to get the time complexity of the selected code. Delete and either provide a different information if you want(like a library)or leave it empty, and hit enter to get code explanation. Wait for bottom panel to open and display the results.
 
 
+## How it works
+
+1. AskCodi uses OpenAI GPT3 to generate suggestions.
+
+2. For the context, Codi uses 512 characters before the selected query, or position of cursor/caret and uses that code to provide relavant suggestions. Please note, AskCodi does not save this context, however it is recommended that you do not include any sensitive data in the context or query.
+
+3. The generated suggestion and query is saved on AskCodi servers to provide a codebase feature, which is only visible to the user(s) in the workspace they authenticated their device with. Only in case you chose "Community" workspace, it is visible to rest of the community.
+
+
 ## Change Key-bindings
 
 **Mac:** Goto Settings => Preferences => Package Settings => AskCodi => Key-bindings 
