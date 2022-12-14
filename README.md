@@ -8,11 +8,11 @@
 **6. Complete Code (Manually triggerd, works same as auto-complete),**<br/>
 **7. Test Code.**<br/>
 <br/>
-Whether you are new to coding or a professional, working individually or in a team, Ask Codi helps save time by answering your queries in your favourite IDE.
+Whether you are new to coding or a professional, working individually or in a team, AskCodi helps save time by answering your queries in your favourite IDE.
 <br/>
 
 ## Team learning
-With the support of teams, you can accelerate the process by sharing suggestions with your team or the community. Ask Codi extension is integrated along with webapp version. Any code generated is reflected in the codebase. You can change the workspace from the webapp for the extension and segregate your codebase.
+With the support of teams, you can accelerate the process by sharing suggestions with your team or the community. AskCodi extension is integrated along with webapp version. Any code generated is reflected in the codebase. You can change the workspace from the webapp for the extension and segregate your codebase.
 
 ## Installation
 
@@ -31,15 +31,15 @@ With the support of teams, you can accelerate the process by sharing suggestions
 
 ## Usage
 
-**1. Generate Code:** Write your query as comment or statement. Select the query, right click and go to Ask Codi. Click on Generate Code and wait for bottom panel to open and display the results.
+**1. Generate Code:** Write your query as comment or statement. Select the query, right click and go to AskCodi. Click on Generate Code and wait for bottom panel to open and display the results.
 
-**2. Document Code:** Select the code, right click and go to Ask Codi. Click on Document Code and wait for bottom panel to open and display the results.
+**2. Document Code:** Select the code, right click and go to AskCodi. Click on Document Code and wait for bottom panel to open and display the results.
 
-**3. Test Code:** Select the code, right click and go to Ask Codi. Click on Test Code and wait for bottom panel to open and display the results.
+**3. Test Code:** Select the code, right click and go to AskCodi. Click on Test Code and wait for bottom panel to open and display the results.
 
 **3. Complete Code:** Complete code can be triggered using jot keys `ctrl + 1` only. Whether you are writing a statement or code, complete code can be triggered directly using the hot key to complete the code or even comments.
 
-**4. Explain Code:** Select the code, right click and go to Ask Codi. Click on Explain Code and a bottom dialogue box opens. Keep the default text as it is to get the time complexity of the selected code. Delete and either provide a different information if you want(like a library)or leave it empty, and hit enter to get code explanation. Wait for bottom panel to open and display the results.
+**4. Explain Code:** Select the code, right click and go to AskCodi. Click on Explain Code and a bottom dialogue box opens. Keep the default text as it is to get the time complexity of the selected code. Delete and either provide a different information if you want(like a library)or leave it empty, and hit enter to get code explanation. Wait for bottom panel to open and display the results.
 
 
 ## How it works
