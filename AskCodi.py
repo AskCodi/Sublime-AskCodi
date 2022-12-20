@@ -82,6 +82,7 @@ def plugin_loaded():
 
 def ask_codi_api(app, query, language, context, generated, info, self, edit):
     try:
+        update_status_bar("Asking Codi 🤖 ")
         headers = {
             'Authorization': SETTINGS.get("api_key"),
             'deviceid': SETTINGS.get("device_id"),

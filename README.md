@@ -37,7 +37,7 @@ With the support of teams, you can accelerate the process by sharing suggestions
 
 **3. Test Code:** Select the code, right click and go to AskCodi. Click on Test Code and wait for bottom panel to open and display the results.
 
-**3. Complete Code:** Complete code can be triggered using jot keys `ctrl + 1` only. Whether you are writing a statement or code, complete code can be triggered directly using the hot key to complete the code or even comments.
+**3. Complete Code:** Complete code can be triggered using hot keys `ctrl + alt + 1` or `ctrl + option + 1` only. Whether you are writing a statement or code, complete code can be triggered directly using the hot key to complete the code or even comments.
 
 **4. Explain Code:** Select the code, right click and go to AskCodi. Click on Explain Code and a bottom dialogue box opens. Keep the default text as it is to get the time complexity of the selected code. Delete and either provide a different information if you want(like a library)or leave it empty, and hit enter to get code explanation. Wait for bottom panel to open and display the results.
 
