@@ -46,9 +46,15 @@ With the support of teams, you can accelerate the process by sharing suggestions
 
 1. AskCodi uses OpenAI GPT3 to generate suggestions.
 
-2. For the context, Codi uses 512 characters before the selected query, or position of cursor/caret and uses that code to provide relavant suggestions. Please note, AskCodi does not save this context, however it is recommended that you do not include any sensitive data in the context or query.
+2. For the **context, Codi uses 512 characters before the selected query, or position of cursor/caret and uses that code to provide relavant suggestions. You can turn off the context from the config file by changing from "on" to "off"** Please note, AskCodi does not save this context, however it is recommended that you do not include any sensitive data in the context or query. Also, with context "off", **Complete code** application won't work.
 
-3. The generated suggestion and query is saved on AskCodi servers to provide a codebase feature, which is only visible to the user(s) in the workspace they authenticated their device with. Only in case you chose "Community" workspace, it is visible to rest of the community.
+3. AskCodi sends the context code(if on in settings) and the selected text/code to the servers to generate suggestions.
+
+4. The generated suggestion and query is saved on AskCodi servers to provide a codebase feature, which is only visible to the user(s) in the workspace they authenticated their device with. Only in case you chose "Community" workspace, it is visible to rest of the community.
+
+## Change Configuration
+
+**Go to Home directory:** Look for askcodi-sublime-config.ini and edit the file. The acceptable values are **on** or **off** for each of the setting.
 
 
 ## Change Key-bindings
