@@ -54,22 +54,22 @@ With the support of teams, you can accelerate the process by sharing suggestions
 
 ## Change user settings
 
-**Mac:** Goto Settings => Preferences => Package Settings => AskCodi => User-settings
+**Mac:** Goto Settings => Preferences => Package Settings => AskCodi => User - Settings
 
-**Windows:** Goto Preferences => User-settings
+**Windows:** Goto Preferences => User - Settings
 
-**Ubuntu:** Goto Preferences => User-settings
+**Ubuntu:** Goto Preferences => User - Settings
 
 Edit the file as per preferences, the acceptable values are **true** or **false** for each of the setting, and save the file.
 
 
-## Change Key-bindings
+## Change Key bindings
 
-**Mac:** Goto Settings => Preferences => Package Settings => AskCodi => Key-bindings 
+**Mac:** Goto Settings => Preferences => Package Settings => AskCodi => Key - Bindings 
 
-**Windows:** Goto Preferences => Key Bindings 
+**Windows:** Goto Preferences => Key - Bindings 
 
-**Ubuntu:** Goto Preferences => Key Bindings 
+**Ubuntu:** Goto Preferences => Key - Bindings 
 
 Make the desired changes and save the file.
 
