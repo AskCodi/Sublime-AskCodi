@@ -23,6 +23,13 @@
                                     "file": "${packages}/User/Default.sublime-keymap"
                                 },
                                 "caption": "Key-bindings"
+                            },
+                            {
+                                "command": "open_file", "args":
+                                {
+                                    "file": "${packages}/User/AskCodi.sublime-settings"
+                                },
+                                "caption": "User-settings"
                             }
                         ]
                     }

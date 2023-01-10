@@ -17,25 +17,18 @@ import threading
 from urllib import request
 import json
 import platform
-from pathlib import Path
-import configparser
+
 
 # globals
+EDITOR = "Sublime"
+CODI_VERSION = "3.0"
 ST_VERSION = int(sublime.version())
 SETTINGS_FILE = 'AskCodi.sublime-settings'
 SETTINGS = {}
 FAST_TOKEN = ""
 CURRENT_POS = 0
-CONFIG = configparser.ConfigParser()
-if CONFIG.read(str(Path.home()) + '/askcodi-sublime-config.ini') == []:
-    CONFIG['DEFAULT'] = {'context': 'on',
-                            'generatecode': 'on',
-                            'explaincode': 'on',
-                            'testcode': 'on',
-                            'completecode':'on',
-                            'documentcode': 'on'}
-    with open(str(Path.home()) + '/askcodi-sublime-config.ini', 'w') as configfile:
-        CONFIG.write(configfile)
+KEY = "xkeyaskcodi-aeaf8883-9005-4298-8394-94346f977ed9-37b41a0b-167c-4a12-b639-3aff64e1b88e"
+URL = "https://us-central1-askcodi-1a402.cloudfunctions.net"
 
 def update_status_bar(message):
     try:
@@ -65,11 +58,11 @@ def authenticate():
             headers = {'Content-Type': 'application/json',
                        'token': FAST_TOKEN,
                        'deviceid': temp_device_id,
-                       'idetype': SETTINGS.get("editor"),
-                       'authorization': SETTINGS.get("api_key"),
-                       'source': SETTINGS.get("editor") + "-" + SETTINGS.get("version")
+                       'idetype': EDITOR,
+                       'authorization': KEY,
+                       'source': EDITOR + "-" + CODI_VERSION
                        }
-            req = request.Request(SETTINGS.get("url") + "/validateDevice", headers=headers)
+            req = request.Request(URL + "/validateDevice", headers=headers)
             resp = json.load(request.urlopen(req))
             if resp["success"]:
                 FAST_TOKEN = resp["token"]
@@ -96,15 +89,15 @@ def ask_codi_api(app, query, context, generated, info, self, edit):
         update_status_bar("Asking Codi...")
         try:
             language = "." + self.view.window().active_view().file_name().split(".")[-1]
-            self.view.insert(edit, 0, str(language))
+            # self.view.insert(edit, 0, str(language))
         except:
             update_status_bar("Please save the file with a proper language extension first to use AskCodi.")
         headers = {
-            'Authorization': SETTINGS.get("api_key"),
+            'Authorization': KEY,
             'deviceid': SETTINGS.get("device_id"),
-            'idetype': SETTINGS.get("editor"),
+            'idetype': EDITOR,
             'token': SETTINGS.get("fast_token"),
-            'source': SETTINGS.get("editor") + "-" + SETTINGS.get("version"),
+            'source': EDITOR + "-" + CODI_VERSION,
             'Content-Type': 'application/json'
         }
         data = {
@@ -118,10 +111,11 @@ def ask_codi_api(app, query, context, generated, info, self, edit):
             "position": 0
         }
         data = str(json.dumps(data)).encode('utf-8')
-        req = request.Request(SETTINGS.get("url") + "/askCodiExtension/" + app, data=data, headers=headers)
+        req = request.Request(URL + "/askCodiExtension/" + app, data=data, headers=headers)
         resp = json.load(request.urlopen(req))
         if resp["success"]:
             SETTINGS.set('fast_token', resp["token"])
+            sublime.save_settings(SETTINGS_FILE)
             if "completion" not in app:
                 self.panel = self.view.window().create_output_panel('AskCodi')
                 self.panel.run_command('insert', {'characters': resp["message"].strip()})
@@ -140,8 +134,7 @@ def ask_codi_api(app, query, context, generated, info, self, edit):
 class GenerateCodeCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         if SETTINGS.get("device_id"):
-            CONFIG.read(str(Path.home()) + '/askcodi-sublime-config.ini')
-            if str(CONFIG['DEFAULT']['generatecode']) == "on":
+            if SETTINGS.get("generate_code"):
                 sel = self.view.sel()[0]
                 selected = self.view.substr(sel)
                 context = ""
@@ -155,7 +148,7 @@ class GenerateCodeCommand(sublime_plugin.TextCommand):
                 else:
                     update_status_bar("Please select your query.")
             else:
-                update_status_bar("Please check " + str(Path.home()) + "/askcodi-sublime-config.ini for generatecode setting.")
+                update_status_bar("Please check user settings for AskCodi for generate_code setting.")
         else:
             update_status_bar("Authenticating device...")
             download_thread = threading.Thread(target=authenticate)
@@ -165,8 +158,7 @@ class GenerateCodeCommand(sublime_plugin.TextCommand):
 class ExplainCodeCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         if SETTINGS.get("device_id"):
-            CONFIG.read(str(Path.home()) + '/askcodi-sublime-config.ini')
-            if str(CONFIG['DEFAULT']['explaincode']) == "on":
+            if SETTINGS.get("explain_code"):
                 sel = self.view.sel()[0]
                 selected = self.view.substr(sel)
                 if len(selected) > 0:
@@ -185,7 +177,7 @@ class ExplainCodeCommand(sublime_plugin.TextCommand):
                 else:
                     update_status_bar("Please select your query.")
             else:
-                update_status_bar("Please check " + str(Path.home()) + "/askcodi-sublime-config.ini for explaincode setting.")
+                update_status_bar("Please check user settings for AskCodi for explain_code setting.")
         else:
             update_status_bar("Authenticating device...")
             download_thread = threading.Thread(target=authenticate)
@@ -195,8 +187,7 @@ class ExplainCodeCommand(sublime_plugin.TextCommand):
 class DocumentCodeCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         if SETTINGS.get("device_id"):
-            CONFIG.read(str(Path.home()) + '/askcodi-sublime-config.ini')
-            if str(CONFIG['DEFAULT']['documentcode']) == "on":
+            if SETTINGS.get("document_code"):
                 sel = self.view.sel()[0]
                 selected = self.view.substr(sel)
                 if len(selected) > 0:
@@ -206,7 +197,7 @@ class DocumentCodeCommand(sublime_plugin.TextCommand):
                 else:
                     update_status_bar("Please select your query.")
             else:
-                update_status_bar("Please check " + str(Path.home()) + "/askcodi-sublime-config.ini for documentcode setting.")
+                update_status_bar("Please check user settings for AskCodi for document_code setting.")
         else:
             update_status_bar("Authenticating device...")
             download_thread = threading.Thread(target=authenticate)
@@ -216,8 +207,7 @@ class DocumentCodeCommand(sublime_plugin.TextCommand):
 class TestCodeCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         if SETTINGS.get("device_id"):
-            CONFIG.read(str(Path.home()) + '/askcodi-sublime-config.ini')
-            if str(CONFIG['DEFAULT']['testcode']) == "on":
+            if SETTINGS.get("test_code"):
                 sel = self.view.sel()[0]
                 selected = self.view.substr(sel)
                 if len(selected) > 0:
@@ -228,7 +218,7 @@ class TestCodeCommand(sublime_plugin.TextCommand):
                 else:
                     update_status_bar("Please select your query.")
             else:
-                update_status_bar("Please check " + str(Path.home()) + "/askcodi-sublime-config.ini for testcode setting.")
+                update_status_bar("Please check user settings for AskCodi for test_code setting.")
         else:
             update_status_bar("Authenticating device...")
             download_thread = threading.Thread(target=authenticate)
@@ -239,8 +229,7 @@ class CompleteCodeCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         global CURRENT_POS
         if SETTINGS.get("device_id"):
-            CONFIG.read(str(Path.home()) + '/askcodi-sublime-config.ini')
-            if str(CONFIG['DEFAULT']['completecode']) == "on" and str(CONFIG['DEFAULT']['context']) == "on":
+            if SETTINGS.get("complete_code") and SETTINGS.get("context"):
                 context = ""
                 for region in self.view.sel():
                     CURRENT_POS = region.begin()
@@ -250,7 +239,7 @@ class CompleteCodeCommand(sublime_plugin.TextCommand):
                 else:
                     update_status_bar("Please provide some context.")
             else:
-                update_status_bar("Please check " + str(Path.home()) + "/askcodi-sublime-config.ini for completecode and context settings.")
+                update_status_bar("Please check user settings for AskCodi for complete_code and context settings.")
         else:
             update_status_bar("Authenticating device...")
             download_thread = threading.Thread(target=authenticate)
