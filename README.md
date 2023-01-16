@@ -48,28 +48,28 @@ With the support of teams, you can accelerate the process by sharing suggestions
 
 2. For the **context, Codi uses 512 characters before the selected query, or position of cursor/caret and uses that code to provide relavant suggestions. You can turn off the context from the user settings file (see section "Change user settings") by changing from "true" to "false"** Please note, AskCodi does not save this context, however it is recommended that you do not include any sensitive data in the context or query. Also, with context "off", **Complete code** application won't work.
 
-3. AskCodi sends the context code(if on in settings) and the selected text/code to the servers to generate suggestions.
+3. AskCodi sends the context code(if true in settings) and the selected text/code to the servers to generate suggestions.
 
 4. The generated suggestion and query is saved on AskCodi servers to provide a codebase feature, which is only visible to the user(s) in the workspace they authenticated their device with. Only in case you chose "Community" workspace, it is visible to rest of the community.
 
-## Change user settings
+## Change settings
 
-**Mac:** Goto Settings => Preferences => Package Settings => AskCodi => User - Settings
+**Mac:** Goto Settings => Preferences => Package Settings => AskCodi => Settings
 
-**Windows:** Goto Preferences => User - Settings
+**Windows:** Goto Preferences => Settings
 
-**Ubuntu:** Goto Preferences => User - Settings
+**Ubuntu:** Goto Preferences => Settings
 
 Edit the file as per preferences, the acceptable values are **true** or **false** for each of the setting, and save the file.
 
 
 ## Change Key bindings
 
-**Mac:** Goto Settings => Preferences => Package Settings => AskCodi => Key - Bindings 
+**Mac:** Goto Settings => Preferences => Package Settings => AskCodi => Key Bindings 
 
-**Windows:** Goto Preferences => Key - Bindings 
+**Windows:** Goto Preferences => Key Bindings 
 
-**Ubuntu:** Goto Preferences => Key - Bindings 
+**Ubuntu:** Goto Preferences => Key Bindings 
 
 Make the desired changes and save the file.
 

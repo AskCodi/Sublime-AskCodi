@@ -1,22 +1,28 @@
+// Usually default keymaps open on left split panel and user on right split panel for keymaps. 
 [
+    // Trigger Generate code application of AskCodi.
     {
         "keys": ["ctrl+alt+2"],
         "command": "generate_code"
     },
     {
+        // Trigger Excplain code application of AskCodi.
         "keys": ["ctrl+alt+4"],
         "command": "explain_code"
     },
     {
+        // Trigger Document code application of AskCodi.
         "keys": ["ctrl+alt+3"],
         "command": "document_code"
     },
     {
+        // Trigger Test code application of AskCodi.
         "keys": ["ctrl+alt+5"],
         "command": "test_code"
     },
     {
+        // Trigger Complete code application of AskCodi.
         "keys": ["ctrl+alt+1"],
         "command": "complete_code"
-    }
+    },
 ]

@@ -18,18 +18,20 @@
                         "children":
                         [
                             {
-                                "command": "open_file", "args":
+                                "caption": "Settings",
+                                "command": "edit_settings", "args":
                                 {
-                                    "file": "${packages}/User/Default.sublime-keymap"
-                                },
-                                "caption": "Key - Bindings"
+                                    "base_file": "${packages}/AskCodi/AskCodi.sublime-settings",
+                                    "default": "// AskCodi Settings - User\n{\n\t// \"debug\": true,\n\t\n\t\"linters\": {\n\t\t$0\n\t}\n}\n"
+                                }
                             },
                             {
-                                "command": "open_file", "args":
+                                "caption": "Key Bindings",
+                                "command": "edit_settings", "args":
                                 {
-                                    "file": "${packages}/User/AskCodi.sublime-settings"
-                                },
-                                "caption": "User - Settings"
+                                    "base_file": "${packages}/AskCodi/Default.sublime-keymap",
+                                    "default": "${packages}/User/Default.sublime-keymap"
+                                }
                             }
                         ]
                     }
