@@ -46,33 +46,43 @@ def authenticate():
     if SETTINGS.get("device_id"):
         update_status_bar('Codi is chilling while you code 😴 ')
         return True
-    temp_device_id = str(uuid.uuid4())
-    webbrowser.open(
-        'https://app.askcodi.com/login?ideType=Sublime&deviceId=' + temp_device_id + "&os=" + platform.system() + "-" + platform.machine(),
-        new=2)
-    start = time.time()
-    while FAST_TOKEN == "" and time.time() - start <= 120.0:
-        time.sleep(3)
-        try:
-            # make request and wait
-            headers = {'Content-Type': 'application/json',
-                       'token': FAST_TOKEN,
-                       'deviceid': temp_device_id,
-                       'idetype': EDITOR,
-                       'authorization': KEY,
-                       'source': EDITOR + "-" + CODI_VERSION
-                       }
-            req = request.Request(URL + "/validateDevice", headers=headers)
-            resp = json.load(request.urlopen(req))
-            if resp["success"]:
-                FAST_TOKEN = resp["token"]
-                SETTINGS.set('fast_token', FAST_TOKEN)
-                SETTINGS.set('device_id', str(temp_device_id))
-                sublime.save_settings(SETTINGS_FILE)
-        except:
-            pass
-    if FAST_TOKEN != "":
-        update_status_bar('AskCodi is ready 🤩 ')
+    try:
+        temp_device_id = str(uuid.uuid4())
+        webbrowser.open(
+            'https://app.askcodi.com/login?ideType=Sublime&deviceId=' + temp_device_id + "&os=" + platform.system() + "-" + platform.machine(),
+            new=2)
+        start = time.time()
+        while FAST_TOKEN == "" and time.time() - start <= 120.0:
+            time.sleep(3)
+            try:
+                # make request and wait
+                headers = {'Content-Type': 'application/json',
+                        'token': FAST_TOKEN,
+                        'deviceid': temp_device_id,
+                        'idetype': EDITOR,
+                        'authorization': KEY,
+                        'source': EDITOR + "-" + CODI_VERSION
+                        }
+                req = request.Request(URL + "/validateDevice", headers=headers)
+                resp = json.load(request.urlopen(req))
+                if resp["success"]:
+                    FAST_TOKEN = resp["token"]
+                    SETTINGS.set('fast_token', FAST_TOKEN)
+                    SETTINGS.set('device_id', str(temp_device_id))
+                    SETTINGS.set('generate_code', SETTINGS.get("generate_code") if SETTINGS.get("generate_code") else True)
+                    SETTINGS.set('explain_code', SETTINGS.get("explain_code") if SETTINGS.get("explain_code") else True)
+                    SETTINGS.set('test_code', SETTINGS.get("test_code") if SETTINGS.get("test_code") else True)
+                    SETTINGS.set('document_code', SETTINGS.get("document_code") if SETTINGS.get("document_code") else True)
+                    SETTINGS.set('complete_code', SETTINGS.get("complete_code") if SETTINGS.get("complete_code") else True)
+                    SETTINGS.set('context', SETTINGS.get("context") if SETTINGS.get("context") else True)
+                    sublime.save_settings(SETTINGS_FILE)
+                    SETTINGS = sublime.load_settings(SETTINGS_FILE)
+            except Exception as e:
+                pass
+        if FAST_TOKEN != "":
+            update_status_bar('AskCodi is ready 🤩 ')
+    except:
+        update_status_bar('Couldn\'t authenticate AskCodi: plugin error')
     return True
 
 
@@ -126,7 +136,8 @@ def ask_codi_api(app, query, context, generated, info, self, edit):
             sublime.status_message('See suggestion from Codi')
         else:
             update_status_bar("AskCodi: " + resp["message"])
-    except:
+    except Exception as e:
+        self.view.insert(edit, CURRENT_POS, str(e))
         update_status_bar("Couldn't request AskCodi.")
         pass
 

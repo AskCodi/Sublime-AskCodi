@@ -1,4 +1,4 @@
-// Usually default keymaps open on left split panel and user on right split panel for keymaps. 
+// default keymaps
 [
     // Trigger Generate code application of AskCodi.
     {

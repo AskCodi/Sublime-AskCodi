@@ -1,6 +1,5 @@
 // AskCodi Default Settings
 // Use this as a reference when editing your local User settings.
-// Usually default settings open on left split panel and user on right split panel. 
 {
 	// Device id to link your device to AskCodi account.
 	// IMPORTANT: don't change once set.
@@ -12,23 +11,23 @@
 
 	// Generate code application for AskCodi.
 	// turn false to disable.
-	"generatecode": true,
+	"generate_code": true,
 
 	// Explain code application for AskCodi.
 	// turn false to disable.
-	"explaincode": true,
+	"explain_code": true,
 
 	// Test code application for AskCodi.
 	// turn false to disable.
-	"testcode": true,
+	"test_code": true,
 
 	// Document code application for AskCodi.
 	// turn false to disable.
-	"documentcode": true,
+	"document_code": true,
 
 	// Complete code application for AskCodi, only works through hot keys.
 	// turn false to disable.
-	"completecode": true,
+	"complete_code": true,
 
 	// Context feature to provide more valid suggestions from AskCodi.
 	// turn false to disable. 
