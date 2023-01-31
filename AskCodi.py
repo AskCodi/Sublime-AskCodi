@@ -53,7 +53,7 @@ def authenticate():
             new=2)
         start = time.time()
         while FAST_TOKEN == "" and time.time() - start <= 120.0:
-            time.sleep(3)
+            time.sleep(5)
             try:
                 # make request and wait
                 headers = {'Content-Type': 'application/json',
@@ -63,8 +63,11 @@ def authenticate():
                         'authorization': KEY,
                         'source': EDITOR + "-" + CODI_VERSION
                         }
-                req = request.Request(URL + "/validateDevice", headers=headers)
-                resp = json.load(request.urlopen(req))
+                req = request.Request(URL + "/validateDevice/", headers=headers)  
+                response = request.urlopen(req)
+                # parse json response
+                resp = json.loads(response.read().decode('utf-8'))
+
                 if resp["success"]:
                     FAST_TOKEN = resp["token"]
                     SETTINGS.set('fast_token', FAST_TOKEN)
@@ -88,7 +91,26 @@ def authenticate():
 
 def plugin_loaded():
     global SETTINGS
+    settings_exist = False;
     SETTINGS = sublime.load_settings(SETTINGS_FILE)
+    for file in sublime.find_resources("AskCodi.sublime-settings"):
+        if 'Packages/User' in file:
+            settings_exist = True
+            break
+
+    if not settings_exist:
+        SETTINGS.set('fast_token', '')
+        SETTINGS.set('device_id', '')
+        SETTINGS.set('generate_code', True)
+        SETTINGS.set('explain_code', True)
+        SETTINGS.set('test_code', True)
+        SETTINGS.set('document_code', True)
+        SETTINGS.set('complete_code', True)
+        SETTINGS.set('context', True)
+        sublime.save_settings(SETTINGS_FILE)
+    
+    SETTINGS = sublime.load_settings(SETTINGS_FILE)
+
     update_status_bar('Initializing AskCodi...')
     check_thread = threading.Thread(target=authenticate)
     check_thread.start()
@@ -122,7 +144,10 @@ def ask_codi_api(app, query, context, generated, info, self, edit):
         }
         data = str(json.dumps(data)).encode('utf-8')
         req = request.Request(URL + "/askCodiExtension/" + app, data=data, headers=headers)
-        resp = json.load(request.urlopen(req))
+        response = request.urlopen(req)
+        # parse json response
+        resp = json.loads(response.read().decode('utf-8'))
+
         if resp["success"]:
             SETTINGS.set('fast_token', resp["token"])
             sublime.save_settings(SETTINGS_FILE)
