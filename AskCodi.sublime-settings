@@ -1,13 +1,8 @@
 // AskCodi Default Settings
 // Use this as a reference when editing your local User settings.
 {
-	// Device id to link your device to AskCodi account.
-	// IMPORTANT: don't change once set.
-	"device_id": "",
-
-	// Token linked to your device and plugin.
-	// IMPORTANT: don't change.
-	"fast_token": "",
+	// API Key for AskCodi services.
+	"api_key": "",
 
 	// Generate code application for AskCodi.
 	// turn false to disable.
@@ -24,10 +19,6 @@
 	// Document code application for AskCodi.
 	// turn false to disable.
 	"document_code": true,
-
-	// Complete code application for AskCodi, only works through hot keys.
-	// turn false to disable.
-	"complete_code": true,
 
 	// Context feature to provide more valid suggestions from AskCodi.
 	// turn false to disable. 
