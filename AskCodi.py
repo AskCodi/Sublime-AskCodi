@@ -27,7 +27,7 @@ ST_VERSION = int(sublime.version())
 SETTINGS_FILE = 'AskCodi.sublime-settings'
 SETTINGS = {}
 API_KEY = ""
-URL = "http://127.0.0.1:3000/api/askcodi-extension/"
+URL = "https://app.askcodi.com/api/askcodi-extension/"
 
 def update_status_bar(message):
     try:
