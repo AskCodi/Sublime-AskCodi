@@ -18,6 +18,10 @@
             { 
                 "caption": "Test Code",
                 "command": "test_code"
+            },
+            { 
+                "caption": "Complete Code",
+                "command": "complete_code"
             }
         ]
     }

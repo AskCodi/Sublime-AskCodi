@@ -20,6 +20,10 @@
 	// turn false to disable.
 	"document_code": true,
 
+	// Document code application for AskCodi.
+	// turn false to disable.
+	"complete_code": true,
+
 	// Context feature to provide more valid suggestions from AskCodi.
 	// turn false to disable. 
 	// Note that complete code application will stop working.

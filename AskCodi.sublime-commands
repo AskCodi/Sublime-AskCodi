@@ -14,5 +14,9 @@
     {
         "caption": "AskCodi: Test Code",
         "command": "test_code"
+    },
+    {
+        "caption": "AskCodi: Complete Code",
+        "command": "complete_code"
     }
 ]
