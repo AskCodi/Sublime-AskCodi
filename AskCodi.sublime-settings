@@ -4,6 +4,9 @@
 	// API Key for AskCodi services.
 	"api_key": "",
 
+	// Model for AskCodi services, options: "Base", "GPT 3.5", "GPT 4".
+	"model": "Base",
+
 	// Generate code application for AskCodi.
 	// turn false to disable.
 	"generate_code": true,

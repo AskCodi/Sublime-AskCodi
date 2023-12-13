@@ -20,7 +20,7 @@ import textwrap
 
 # globals
 EDITOR = "Sublime"
-CODI_VERSION = "4.1"
+CODI_VERSION = "4.2"
 ST_VERSION = int(sublime.version())
 SETTINGS_FILE = 'AskCodi.sublime-settings'
 SETTINGS = {}
@@ -163,7 +163,7 @@ def prompt_api_key():
 
 def plugin_loaded():
     global SETTINGS
-    settings_exist = False;
+    settings_exist = False
     SETTINGS = sublime.load_settings(SETTINGS_FILE)
     for file in sublime.find_resources("AskCodi.sublime-settings"):
         if 'Packages/User' in file:
@@ -172,6 +172,7 @@ def plugin_loaded():
 
     if not settings_exist:
         SETTINGS.set('api_key', '')
+        SETTINGS.set('model', 'Base')
         SETTINGS.set('generate_code', True)
         SETTINGS.set('explain_code', True)
         SETTINGS.set('test_code', True)
@@ -197,7 +198,7 @@ def ask_codi_api(app, query, context, self, edit):
         try:
             language = "." + self.view.window().active_view().file_name().split(".")[-1]
         except:
-            update_status_bar("[AskCodi]: Please save the file with a proper language extension first to use AskCodi.")
+            language = ""
         headers = {
             'apikey': SETTINGS.get("api_key"),
             'source': EDITOR,
@@ -214,6 +215,7 @@ def ask_codi_api(app, query, context, self, edit):
             "messages": messages,
             "language": language,
             "app": app,
+            "model": SETTINGS.get("model")
         }
         data = json.dumps(data).encode('utf-8')
         try:
