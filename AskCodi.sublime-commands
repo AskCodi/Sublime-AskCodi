@@ -1,5 +1,9 @@
 [
     {
+		"caption": "AskCodi: Chat",
+		"command": "chat"
+	},
+    {
         "caption": "AskCodi: Generate Code",
         "command": "generate_code"
     },
@@ -12,11 +16,23 @@
         "command": "document_code"
     },
     {
-        "caption": "AskCodi: Test Code",
-        "command": "test_code"
+        "caption": "AskCodi: Unit Tests",
+        "command": "unit_tests"
     },
     {
-        "caption": "AskCodi: Complete Code",
-        "command": "complete_code"
-    }
+		"caption": "AskCodi: Reset chat history",
+		"command": "reset_chat_history"
+	},
+    {
+		"caption": "AskCodi: Open Chat",
+		"command": "open_chat"
+	},
+    {
+		"caption": "AskCodi: Select Model",
+		"command": "select_model"
+	},
+    {
+		"caption": "AskCodi: Set API key",
+		"command": "set_api_key"
+	}
 ]

@@ -4,32 +4,7 @@
 	// API Key for AskCodi services.
 	"api_key": "",
 
-	// Model for AskCodi services, options: "Base", "GPT 3.5", "GPT 4".
-	"model": "Base",
-
-	// Generate code application for AskCodi.
-	// turn false to disable.
-	"generate_code": true,
-
-	// Explain code application for AskCodi.
-	// turn false to disable.
-	"explain_code": true,
-
-	// Test code application for AskCodi.
-	// turn false to disable.
-	"test_code": true,
-
-	// Document code application for AskCodi.
-	// turn false to disable.
-	"document_code": true,
-
-	// Document code application for AskCodi.
-	// turn false to disable.
-	"complete_code": true,
-
-	// Context feature to provide more valid suggestions from AskCodi.
-	// turn false to disable. 
-	// Note that complete code application will stop working.
-	"context": true
+	// Model for AskCodi services, options: "Base", "GPT 3.5", "GPT 4 etc.".
+	"model": "Base"
 
 }

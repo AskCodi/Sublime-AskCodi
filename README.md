@@ -1,17 +1,15 @@
 ## Accelerate Your Development Workflow With AskCodi
 **[AskCodi](https://askcodi.com)** is an AI code assistant developed by Assistiv.ai, that **facilitates coders** to code faster by providing following features:<br/>
+**1. Chat with Codi AI (Ask AI to code),**<br/>
 **2. Code suggestions for natural language (Ask AI to code),**<br/>
 **3. Time complexity for your code,**<br/>
 **4. Document Code.**<br/>
 **5. Explain Code,**<br/>
-**6. Complete Code,**<br/>
-**7. Test Code.**<br/>
+**6. Test Code.**<br/>
 <br/>
 Whether you are new to coding or a professional, working individually or in a team, AskCodi helps save time by answering your queries in your favourite IDE.
 <br/>
 
-## Team learning
-With the support of teams, you can accelerate the process by sharing suggestions with your team or the community. AskCodi extension is integrated along with webapp version. Any code generated is reflected in the codebase. You can change the workspace from the webapp for the extension and segregate your codebase.
 
 ## Installation
 
@@ -25,52 +23,73 @@ With the support of teams, you can accelerate the process by sharing suggestions
 
 5. AskCodi will prompt to add an API key.
 
-6. Go to[Webapp](https://app.askcodi.com), sign in and in your account settings, copy the integrations key in Sublime Text.
+6. Go to[Webapp](https://askcodi.com), sign in and in your account settings, copy the API key in Sublime Text.
+
 
 
 ## Usage
 
-**1. Generate Code:** Write your query as comment or statement. Select the query, right click and go to AskCodi. Click on Generate Code and wait for bottom panel to open and display the results.
+**1. Generate Code:** Write your query as comment or statement. Select the query, right click and go to AskCodi. Click on Generate Code and wait for Codi panel to open and display the results.
 
-**2. Document Code:** Select the code, right click and go to AskCodi. Click on Document Code and wait for bottom panel to open and display the results.
+**2. Document Code:** Select the code, right click and go to AskCodi. Click on Document Code and wait for Codi panel to open and display the results.
 
-**3. Test Code:** Select the code, right click and go to AskCodi. Click on Test Code and wait for bottom panel to open and display the results.
+**3. Test Code:** Select the code, right click and go to AskCodi. Click on Test Code and wait for Codi panel to open and display the results.
 
-**3. Complete Code:** Complete code can be triggered using hot keys `ctrl + alt + ]` or `ctrl + option + ]` , or right click and go to AskCodi. Whether you are writing a statement or code, complete code can be triggered directly using the hot key to complete the code or even comments.
+**3. Chat:** Complete code can be triggered using hot keys `ctrl + alt + c` or `ctrl + option + c` , or right click and go to AskCodi. Whether you are writing a statement or code, complete code can be triggered directly using the hot key to complete the code or even comments.
 
-**4. Explain Code:** Select the code, right click and go to AskCodi. Click on Explain Code and a bottom dialogue box opens. Keep the default text as it is to get the time complexity of the selected code. Delete and either provide a different information if you want(like a library)or leave it empty, and hit enter to get code explanation. Wait for bottom panel to open and display the results.
+**4. Explain Code:** Select the code, right click and go to AskCodi. Click on Explain Code and a Codi panel opens. Keep the default text as it is to get the time complexity of the selected code. Delete and either provide a different information if you want(like a library)or leave it empty, and hit enter to get code explanation. Wait for Codi panel to open and display the results.
 
+### API key
 
-## How it works
+On installation, AskCodi will prompt to add the API key. Get the API key from [Webapp](https://askcodi.com), sign in and in your account settings, copy the API key in Sublime Text.
 
-1. AskCodi uses OpenAI GPT3.5 Turbo and GPT-4(coming soon) to generate suggestions.
-
-2. For the **context, Codi uses 1024 characters before the selected query, or position of cursor/caret and uses that code to provide relavant suggestions. You can turn off the context from the user settings file (see section "Change user settings") by changing from "true" to "false"** Please note, AskCodi does not save this context, however it is recommended that you do not include any sensitive data in the context or query. Also, with context "off", **Complete code** application won't work.
-
-3. AskCodi sends the context code(if true in settings) and the selected text/code to the servers to generate suggestions.
-
-4. The generated suggestion and query is saved on AskCodi servers to provide a codebase feature, which is only visible to the user(s) in the workspace they authenticated their device with. Only in case you chose "Community" workspace, it is visible to rest of the community.
-
-## Change settings
-
-**Mac:** Goto Settings => Preferences => Package Settings => AskCodi => Settings
-
-**Windows:** Goto Preferences => Settings
-
-**Ubuntu:** Goto Preferences => Settings
-
-Edit the file as per preferences, the acceptable values are **true** or **false** for each of the setting, and save the file.
+> [!NOTE]
+> You can manually set API key via command pallete (press `ctrl+shift+p`(Windows, Linux) or `cmd+shift+p`(OS X)) and search for `AskCodi: Set API Key` or, by right clicking on editor, `AskCodi Defaults` -> `Set API key`.
 
 
-## Change Key bindings
+### Model(llm) Selection
 
-**Mac:** Goto Settings => Preferences => Package Settings => AskCodi => Key Bindings 
+By default, AskCodi uses `Base` llm for requests. you can change the default model via command pallete (press `ctrl+shift+p`(Windows, Linux) or `cmd+shift+p`(OS X)) and search for `AskCodi: Select Model` or, by right clicking on editor, `AskCodi Defaults` -> `Select Model`
 
-**Windows:** Goto Preferences => Key Bindings 
+Alternatively, AskCodi plugin has model in settings file. To set your default model, open the settings within `Preferences` -> `Package Settings` -> `AskCodi` -> `Settings` and paste your API key in the api_key property, as follows:
 
-**Ubuntu:** Goto Preferences => Key Bindings 
+```JSON
+{
+    "model": "Base",
+}
+```
 
-Make the desired changes and save the file.
+
+### Chat history management
+
+You can reset the chat history via command pallete (press `ctrl+shift+p`(Windows, Linux) or `cmd+shift+p`(OS X)) and search for `AskCodi: Reset chat history` or, by right clicking on editor, `AskCodi Defaults` -> `Reset Chat`.
+
+## Settings
+
+The AskCodi plugin has a settings file where you can set your API key. To set your API key, open the settings within `Preferences` -> `Package Settings` -> `AskCodi` -> `Settings` and paste your API key in the api_key property, as follows:
+
+```JSON
+{
+    "api_key": "your-api-key",
+}
+```
+
+## Key bindings
+
+You can bind keys for a given plugin command in `Preferences` -> `Package Settings` -> `AskCodi` -> `Key Bindings`. For example you can bind "Chat" command like this:
+
+```json
+{
+    "keys": ["ctrl+alt+c"],
+    "command": "chat"
+},
+```
+
+### Markdown syntax with syntax highlight support
+
+> [!IMPORTANT]
+> It's highly recommended to install the [`MultimarkdownEditing`](https://sublimetext-markdown.github.io/MarkdownEditing/) to apply broader set of languages with syntax highlighting.
+
 
 
 ## Links

@@ -4,6 +4,10 @@
         "children":
         [
             { 
+                "caption": "Chat",
+                "command": "chat"
+            },
+            { 
                 "caption": "Generate Code",
                 "command": "generate_code"
             },
@@ -16,14 +20,27 @@
                 "command": "document_code"
             },
             { 
-                "caption": "Test Code",
-                "command": "test_code"
+                "caption": "Unit Tests",
+                "command": "unit_tests"
+            },
+        ]
+    },
+    {
+        "caption": "AskCodi Defaults",
+        "children":
+        [
+            { 
+                "caption": "Select Model",
+                "command": "select_model"
             },
             { 
-                "caption": "Complete Code",
-                "command": "complete_code"
+                "caption": "Set API key",
+                "command": "set_api_key"
+            },
+            { 
+                "caption": "Reset Chat",
+                "command": "reset_chat_history"
             }
         ]
     }
-
 ]

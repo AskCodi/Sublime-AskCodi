@@ -22,7 +22,7 @@
                                 "command": "edit_settings", "args":
                                 {
                                     "base_file": "${packages}/AskCodi/AskCodi.sublime-settings",
-                                    "default": "// AskCodi Settings - User\n{\n\t\"device_id\": \"\",\n\t\n\t\"fast_token\": \"\",\n\t\n\t\"generate_code\": true,\n\t\n\t\"explain_code\": true,\n\t\n\t\"test_code\": true,\n\t\n\t\"document_code\": true,\n\t\n\t\"complete_code\": true,\n\t\n\t\"complete_code\": true\n}\n"
+                                    "default": "// AskCodi Settings - User\n{\n\t\"api_key\": \"\",\n\t\n\t\"model\": \"Base\"\n}\n"
                                 }
                             },
                             {

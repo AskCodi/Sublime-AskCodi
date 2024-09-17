@@ -16,13 +16,12 @@
         "command": "document_code"
     },
     {
-        // Trigger Test code application of AskCodi.
+        // Trigger Unit tests application of AskCodi.
         "keys": ["ctrl+alt+4"],
-        "command": "test_code"
+        "command": "unit_tests"
     },
     {
-        // Trigger Complete code application of AskCodi.
-        "keys": ["ctrl+alt+]"],
-        "command": "complete_code"
+        "keys": ["ctrl+alt+c"],
+        "command": "chat"
     }
 ]
