@@ -34,6 +34,7 @@ chat_id = str(uuid.uuid4())
 
 
 class Chat(TextCommand):
+    global settings
     stop_event: Event = Event()
     worker_thread: Optional[AskCodiWorker] = None
     # cache = None
@@ -57,6 +58,14 @@ class Chat(TextCommand):
         for region in self.view.sel():
             if not region.empty():
                 context += self.view.substr(region) + "\n"
+        
+        # exists = listner.check_output_view_(window=sublime.active_window())
+        # if not exists:
+        #     listner.create_new_tab(window=sublime.active_window())
+        # listner.refresh_output_panel(window=sublime.active_window())
+        # listner.show_panel(window=sublime.active_window())
+        self.view.run_command("open_chat")
+        
 
         _ = sublime.active_window().show_input_panel(
                     "Question: ",
@@ -86,11 +95,11 @@ class GenerateCode(TextCommand):
     def on_input(self, region: Optional[Region], context: str, view: View, instruction: str):
         from .askcodi_worker import AskCodiWorker
 
-        Chat.stop_worker()  # Stop any existing worker before starting a new one
-        Chat.stop_event.clear()
+        GenerateCode.stop_worker()  # Stop any existing worker before starting a new one
+        GenerateCode.stop_event.clear()
 
-        Chat.worker_thread = AskCodiWorker(stop_event=self.stop_event, chat_id=chat_id, region=region, command='code-generator', context=context, view=view, instruction=instruction, cache=cache, listner=listner)
-        Chat.worker_thread.start()
+        GenerateCode.worker_thread = AskCodiWorker(stop_event=self.stop_event, chat_id=chat_id, region=region, command='code-generator', context=context, view=view, instruction=instruction, cache=cache, listner=listner)
+        GenerateCode.worker_thread.start()
         update_status_bar('[AskCodi]: Generate code initiated with Codi!!')
 
     def run(self, edit):
@@ -132,11 +141,11 @@ class ExplainCode(TextCommand):
     def on_input(self, region: Optional[Region], context: str, view: View, instruction: str):
         from .askcodi_worker import AskCodiWorker
 
-        Chat.stop_worker()  # Stop any existing worker before starting a new one
-        Chat.stop_event.clear()
+        ExplainCode.stop_worker()  # Stop any existing worker before starting a new one
+        ExplainCode.stop_event.clear()
 
-        Chat.worker_thread = AskCodiWorker(stop_event=self.stop_event, chat_id=chat_id, region=region, command='code-explainer', context=context, view=view, instruction=instruction, cache=cache, listner=listner)
-        Chat.worker_thread.start()
+        ExplainCode.worker_thread = AskCodiWorker(stop_event=self.stop_event, chat_id=chat_id, region=region, command='code-explainer', context=context, view=view, instruction=instruction, cache=cache, listner=listner)
+        ExplainCode.worker_thread.start()
         update_status_bar('[AskCodi]: Explain code initiated with Codi!!')
 
     def run(self, edit):
@@ -176,11 +185,11 @@ class DocumentCode(TextCommand):
     def on_input(self, region: Optional[Region], context: str, view: View, instruction: str):
         from .askcodi_worker import AskCodiWorker
 
-        Chat.stop_worker()  # Stop any existing worker before starting a new one
-        Chat.stop_event.clear()
+        DocumentCode.stop_worker()  # Stop any existing worker before starting a new one
+        DocumentCode.stop_event.clear()
 
-        Chat.worker_thread = AskCodiWorker(stop_event=self.stop_event, chat_id=chat_id, region=region, command='code-documentation', context=context, view=view, instruction=instruction, cache=cache, listner=listner)
-        Chat.worker_thread.start()
+        DocumentCode.worker_thread = AskCodiWorker(stop_event=self.stop_event, chat_id=chat_id, region=region, command='code-documentation', context=context, view=view, instruction=instruction, cache=cache, listner=listner)
+        DocumentCode.worker_thread.start()
         update_status_bar('[AskCodi]: Document code initiated with Codi!!')
 
     def run(self, edit):
@@ -220,11 +229,11 @@ class UnitTests(TextCommand):
     def on_input(self, region: Optional[Region], context: str, view: View, instruction: str):
         from .askcodi_worker import AskCodiWorker
 
-        Chat.stop_worker()  # Stop any existing worker before starting a new one
-        Chat.stop_event.clear()
+        UnitTests.stop_worker()  # Stop any existing worker before starting a new one
+        UnitTests.stop_event.clear()
 
-        Chat.worker_thread = AskCodiWorker(stop_event=self.stop_event, chat_id=chat_id, region=region, command='unit-tests-writer', context=context, view=view, instruction=instruction, cache=cache, listner=listner)
-        Chat.worker_thread.start()
+        UnitTests.worker_thread = AskCodiWorker(stop_event=self.stop_event, chat_id=chat_id, region=region, command='unit-tests-writer', context=context, view=view, instruction=instruction, cache=cache, listner=listner)
+        UnitTests.worker_thread.start()
         update_status_bar('[AskCodi]: Unit tests initiated with Codi!!')
 
     def run(self, edit):
@@ -283,6 +292,8 @@ class SetApiKey(TextCommand):
 class SelectModel(TextCommand):
     def run(self, edit):
         try:
+            global settings
+            settings = sublime.load_settings('AskCodi.sublime-settings')
             self.items = get_models(settings.get('api_key'))
             # self.items = ["Option 1", "Option 2", "Option 3", "Option 4"]
             window = sublime.active_window()
@@ -316,6 +327,7 @@ def prompt_api_key():
         def add_key(text):
             handle_settings = HandleSettings()
             handle_settings.write('api_key', text)
+            update_status_bar('[AskCodi]: Ask Codi!!')
         window.show_input_panel('[AskCodi]: API key:', '', add_key, None, None)
     else:
         present_error(title="[AskCodi] Error", error="Could not prompt for API key, you have to set the API key into the settings to make things work.")
@@ -334,11 +346,12 @@ def update_status_bar(message):
 
         
 class HandleSettings(object):
-    _key = None
+    global settings
 
     def read(self):
         global settings
         settings = sublime.load_settings('AskCodi.sublime-settings')
+        settings_exist = False
         for file in sublime.find_resources("AskCodi.sublime-settings"):
             if 'Packages/User' in file:
                 settings_exist = True
@@ -348,23 +361,14 @@ class HandleSettings(object):
             settings.set('api_key', '')
             settings.set('model', 'Base')
             sublime.save_settings('AskCodi.sublime-settings')
-            prompt_api_key()
-        else:
-            api_key = self.settings.get('api_key')
-            model = self.settings.get('model')
-            change = False
-            if (not api_key or len(api_key)< 5):
-                settings.set('api_key', '')
-                change = True
-                prompt_api_key()
-            if (not model):
-                settings.set('model', 'Base')
-                change = True
-            if change:
-                sublime.save_settings('AskCodi.sublime-settings')
-                
-        settings = sublime.load_settings('AskCodi.sublime-settings')
+        
+        model = settings.get('model')
         api_key = settings.get('api_key')
+        if (not model):
+            settings.set('model', 'Base')
+        else:
+            settings.set('model', model)
+        sublime.save_settings('AskCodi.sublime-settings')
         if not api_key or len(api_key)< 5:
             prompt_api_key()
         else:

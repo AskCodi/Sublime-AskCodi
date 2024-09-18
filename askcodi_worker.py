@@ -9,8 +9,18 @@ from typing import Dict, List, Optional, Any
 from .askcodi_network_client import initiate_stream, connect_sse
 from .output_panel import OutputPanelListener
 from .error_logger import UnknownException, WrongUserInputException, present_error, present_unknown_error
-from .askcodi import update_status_bar
 
+
+def update_status_bar(message):
+    try:
+        if message:
+            active_window = sublime.active_window()
+            if active_window:
+                for view in active_window.views():
+                    view.set_status('AskCodi', message)
+    except:
+        pass
+    
 
 class AskCodiWorker(Thread):
     def __init__(self, stop_event: Event, chat_id: str, region: Optional[Region], command: str, context: str, instruction: str, view: View, cache: Cache, listner: OutputPanelListener ):

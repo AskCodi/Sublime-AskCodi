@@ -1,7 +1,7 @@
 from sublime import Settings, Window, View, load_settings
 from sublime_plugin import EventListener, ViewEventListener
 from .cache import Cache
-from typing import Dict, Optional
+from typing import Optional
 
 class OutputPanelListener(EventListener):
     OUTPUT_PANEL_NAME = "AskCodi Chat"
@@ -114,7 +114,7 @@ class OutputPanelListener(EventListener):
         output_panel = self.get_output_view_(window=window)
         output_panel.set_read_only(False)
         self.clear_output_panel(window)
-
+        print(self.cache.get_cache())
         for line in self.cache.get_cache():
             ## TODO: Make me enumerated, e.g. Question 1, Question 2 etc.
             ## (it's not that easy, since question and answer are the different lines)
@@ -122,10 +122,11 @@ class OutputPanelListener(EventListener):
             ## it presents ## Question above each message, while has to do it once for a pack.
             if line['role'] == 'user':
                 output_panel.run_command('append', {'characters': f'\n\n## Question\n\n'})
+                output_panel.run_command('append', {'characters': line['content'][0]['text']})
             elif line['role'] == 'assistant':
                 output_panel.run_command('append', {'characters': '\n\n## Answer\n\n'})
-
-            output_panel.run_command('append', {'characters': line['content']})
+                output_panel.run_command('append', {'characters': line['content']})
+                output_panel.run_command('append', {'characters':  '\n\n___________________________________________\n\n'})
 
         output_panel.set_read_only(True)
         output_panel.set_name(self.OUTPUT_PANEL_NAME)

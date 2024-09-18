@@ -22,13 +22,17 @@
             { 
                 "caption": "Unit Tests",
                 "command": "unit_tests"
-            },
+            }
         ]
     },
     {
         "caption": "AskCodi Defaults",
         "children":
         [
+            { 
+                "caption": "Open Chat Panel",
+                "command": "open_chat"
+            },
             { 
                 "caption": "Select Model",
                 "command": "select_model"
