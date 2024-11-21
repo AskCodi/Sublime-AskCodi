@@ -3,14 +3,14 @@ import urllib.request
 from typing import Dict, List, Optional
 from .error_logger import UnknownException
 
-# Assuming you have defined these types elsewhere in your Python code
+
 Messages = List[Dict[str, str]]
 GenericDict = Dict[str, any]
 
-# You'll need to define these variables
-url = "https://apiv5.askcodi.com/"
+
+url = "https://api.askcodi.com/"
 # url = "http://localhost:8000/"
-version = "5.4"
+version = "5.5"
 
 
 def get_models(api_key: str):
