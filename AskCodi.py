@@ -45,7 +45,7 @@ class Chat(TextCommand):
         Chat.stop_worker()  # Stop any existing worker before starting a new one
         Chat.stop_event.clear()
         update_status_bar('[AskCodi]: Chat initiated with Codi!!')
-        Chat.worker_thread = AskCodiWorker(stop_event=self.stop_event, chat_id=chat_id, region=region, command='code-generator', context=context, view=view, instruction=instruction, cache=cache, listner=listner)
+        Chat.worker_thread = AskCodiWorker(stop_event=self.stop_event, chat_id=chat_id, region=region, command='chat', context=context, view=view, instruction=instruction, cache=cache, listner=listner)
         Chat.worker_thread.start()
 
     def run(self, edit):
