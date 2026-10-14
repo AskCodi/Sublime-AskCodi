@@ -83,7 +83,7 @@ def connect_sse(provider, session_id):
             with urllib.request.urlopen(req) as response:
                 provider.handle_data(response)
         except urllib.error.URLError as e:
-            raise UnknownException(str(error))
+            raise UnknownException(str(e))
     except Exception as error:
         raise UnknownException(str(error))
         
